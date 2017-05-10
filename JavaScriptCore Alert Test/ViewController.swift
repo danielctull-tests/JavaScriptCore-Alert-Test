@@ -1,25 +1,21 @@
-//
-//  ViewController.swift
-//  JavaScriptCore Alert Test
-//
-//  Created by Daniel Tull on 10.05.2017.
-//  Copyright © 2017 Daniel Tull. All rights reserved.
-//
 
+import JavaScriptCore
 import UIKit
 
 class ViewController: UIViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+	@IBOutlet private var input: UITextView?
+
+	@IBAction func run(_ sender: Any) {
+
+		guard
+			let script = input?.text
+		else {
+			return
+		}
+
+		let system = System(viewController: self)
+		let context = JSContext(system: system)
+		context.evaluateScript(script)
 	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
-
 }
-
