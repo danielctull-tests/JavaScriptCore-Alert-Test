@@ -14,8 +14,11 @@ class ViewController: UIViewController {
 			return
 		}
 
-		let system = System(viewController: self)
-		let context = JSContext(system: system)
-		context.evaluateScript(script)
+		let queue = DispatchQueue(label: "JavaScript")
+		queue.async {
+			let system = System(viewController: self)
+			let context = JSContext(system: system)
+			context.evaluateScript(script)
+		}
 	}
 }
